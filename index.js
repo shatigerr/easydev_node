@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const host = "http://localhost:5102/"
+const host = "https://easydevapi.onrender.com/"
 
 app.get("/:key/:projectid/:endpointURL",  (req,res) => {
     let params = req.query
@@ -87,7 +87,13 @@ async function executeApi(object,req,res)
 
         // Log and send response
         console.log(requestResponseData);
-        res.send({"rowsAffected":requestResponseData});
+        if(req.method == "GET")
+        {
+            res.send(requestResponseData)
+        }else{
+            res.send({"rowsAffected":requestResponseData});
+        }
+        
 
     } catch (error) {
         console.error("Error in request processing:", error);
