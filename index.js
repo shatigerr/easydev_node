@@ -80,6 +80,7 @@ async function executeApi(object,req,res)
         
         if (endpoint.length === 0) {
             status = "404"
+            logObject.status = status
             res.status(404).send("ENDPOINT NOT FOUND");
             await logRequest(logObject)
         }
@@ -105,6 +106,7 @@ async function executeApi(object,req,res)
 
         if (!requestResponse.ok) {
             status = "500"
+            logObject.status = status
             res.send("ERROR PROCESSING THE REQUEST")
             await logRequest(logObject)
         }
@@ -130,6 +132,7 @@ async function executeApi(object,req,res)
 
     } catch (error) {
         status = "500"
+        logObject.status = status
         await logRequest(logObject)
         console.error("Error in request processing:", error);
         res.status(500).send(`Error in request processing: ${error.message}`);
