@@ -6,8 +6,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//const host = "https://easydevapi.onrender.com/"
-const host = "http://localhost:5102/"
+const host = "https://easydevapi.onrender.com/"
+
+//const host = "http://localhost:5102/"
 
 app.get("/:key/:projectid/:endpointURL",  (req,res) => {
     let params = req.query
